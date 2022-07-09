@@ -8,66 +8,56 @@ const weatherOptions = {
     Thunderstorm: {
         iconName: 'weather-lightning',
         gradient: ['#141E30', '#243B55'],
-        title: 'Сиди дома',
-        subtitle: 'Ты видишь что на улице?'
+        title: 'Сиди дома'
     },
     Drizzle: {
         iconName: 'weather-rainy',
         gradient: ['#3a7bd5', '#3a6073'],
-        title: 'Возьми зонтик',
-        subtitle: 'Возможно скоро дождь усилится '
+        title: 'Возьми зонтик'
     },
     Rain: {
         iconName: 'weather-rainy',
         gradient: ['#000046','#1CB5E0'],
-        title: 'На улице дождь',
-        subtitle: 'А значит скоро будет радуга!'
+        title: 'На улице дождь'
     },
     Snow: {
         iconName: 'snowflake',
         gradient: ['#83a4d4', '#b6fbff'],
-        title: 'На улице снежок!',
-        subtitle: 'Одевайтесь потеплее, лепите снеговиков'
+        title: 'На улице снежок!'
     },
     Dust: {
         iconName: 'weather-windy-variant',
         gradient: ['#B79891', '#94716B'],
-        title: 'Пыльно',
-        subtitle: 'Лучше закройте окна'
+        title: 'Пыльно'
     },
     Smoke: {
         iconName: 'weather-windy',
         gradient: ['#56CCF2', '#2F80ED'],
-        title: 'На улице смог :(',
-        subtitle: 'Не советую выходить без необходимости'
+        title: 'На улице смог :('
     },
     Haze: {
         iconName: 'weather-hazy',
         gradient: ['#3E5151', '#DECBA4'],
-        title: 'На улице снежок!',
-        subtitle: 'Одевайтесь потеплее, лепите снеговиков'
+        title: 'На улице снежок!'
     },
     Mist: {
         iconName: 'weather-fog',
         gradient: ['#606c88', '#3f4c6b'],
-        title: 'Ни черта не видно в тумане',
-        subtitle: 'Зато как в Сайлент-Хилле :)'
+        title: 'Ни черта не видно в тумане'
     },
     Clear: {
         iconName: 'weather-sunny',
         gradient: ['#56CCF2', '#2F80ED'],
-        title: 'Погода супер :)',
-        subtitle: 'Иди гулять, хватит сидеть дома!'
+        title: 'Погода супер :)'
     },
     Clouds: {
         iconName: 'weather-cloudy',
         gradient: ['#757F9A', '#D7DDE8'],
-        title: 'Облака',
-        subtitle: 'Белогривые лошадки'
+        title: 'Облака'
     },
 }
 
-export default function Weather ({temp, condition}){
+export default function Weather ({temp, feels_like, temp_min, temp_max, pressure, humidity, condition, speed, name}){
     return (
         <LinearGradient
             colors={weatherOptions[condition].gradient}
@@ -76,10 +66,11 @@ export default function Weather ({temp, condition}){
             <View style = {styles.halfContainer}>
                 <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={112} color="white"/> 
                 <Text style = {styles.tempText}>{temp}°</Text>
+                <Text style = {styles.subTempText}>{name} {"\n"}Ощущается как: {feels_like}° {"\n"}min: {temp_min}° max: {temp_max}°</Text>
             </View>
             <View style = {{...styles.halfContainer, ...styles.textContainer}}>
                 <Text style={styles.title}>{weatherOptions[condition].title}</Text>
-                <Text style={styles.subtitle}>{weatherOptions[condition].subtitle}</Text>
+                <Text style={styles.subtitle}>Давление: {pressure*0.75} мм.рт.ст., влажность: {humidity}%, {"\n"}cкорость ветра {speed} м/с</Text>
             </View>
         </LinearGradient>
     );
@@ -87,6 +78,13 @@ export default function Weather ({temp, condition}){
 
 Weather.propTypes = {
     temp: propTypes.number.isRequired,
+    feels_like: propTypes.number.isRequired,
+    temp_min: propTypes.number.isRequired,
+    temp_max: propTypes.number.isRequired,
+    pressure: propTypes.number.isRequired,
+    humidity: propTypes.number.isRequired,
+    speed: propTypes.number.isRequired,
+    name: propTypes.string.isRequired,
     condition: propTypes.oneOf(["Thunderstorm", "Drizzle", "Rain", "Snow", "Dust", "Smoke", "Haze", "Mist", "Clear", "Clouds"]).isRequired
 }
 
@@ -105,16 +103,22 @@ const styles = StyleSheet.create({
         fontSize:42,
         color: "#fff"
     },
+    subTempText:{
+        fontSize:28,
+        color: "#fff",
+        textAlign: 'center'
+    },
     title: {
         color: "white",
-        fontSize: 44,
+        fontSize: 36,
         fontWeight: "300",
         marginBottom: 10
     },
     subtitle: {
         color: "white",
-        fontWeight: "600",
-        fontSize: 24
+        fontWeight: "400",
+        fontSize: 24,
+        marginTop: 20
     },
     textContainer: {
         paddingHorizontal: 20,
