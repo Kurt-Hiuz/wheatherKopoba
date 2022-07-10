@@ -8,17 +8,17 @@ const weatherOptions = {
     Thunderstorm: {
         iconName: 'weather-lightning',
         gradient: ['#141E30', '#243B55'],
-        title: 'Сиди дома'
+        title: 'Гроза'
     },
     Drizzle: {
         iconName: 'weather-rainy',
         gradient: ['#3a7bd5', '#3a6073'],
-        title: 'Возьми зонтик'
+        title: 'Дождь'
     },
     Rain: {
         iconName: 'weather-rainy',
         gradient: ['#000046','#1CB5E0'],
-        title: 'На улице дождь'
+        title: 'Дождик'
     },
     Snow: {
         iconName: 'snowflake',
@@ -33,27 +33,27 @@ const weatherOptions = {
     Smoke: {
         iconName: 'weather-windy',
         gradient: ['#56CCF2', '#2F80ED'],
-        title: 'На улице смог :('
+        title: 'Смог'
     },
     Haze: {
         iconName: 'weather-hazy',
         gradient: ['#3E5151', '#DECBA4'],
-        title: 'На улице снежок!'
+        title: 'Снежно'
     },
     Mist: {
         iconName: 'weather-fog',
         gradient: ['#606c88', '#3f4c6b'],
-        title: 'Ни черта не видно в тумане'
+        title: 'Туманно'
     },
     Clear: {
         iconName: 'weather-sunny',
         gradient: ['#56CCF2', '#2F80ED'],
-        title: 'Погода супер :)'
+        title: 'Солнечно'
     },
     Clouds: {
         iconName: 'weather-cloudy',
         gradient: ['#757F9A', '#D7DDE8'],
-        title: 'Облака'
+        title: 'Облачно'
     },
 }
 
