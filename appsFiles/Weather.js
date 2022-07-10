@@ -63,14 +63,15 @@ export default function Weather ({temp, feels_like, temp_min, temp_max, pressure
             colors={weatherOptions[condition].gradient}
             style={styles.container}>
             <StatusBar barStyle={"light-content"} />
-            <View style = {styles.halfContainer}>
-                <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={112} color="white"/> 
+            <View style = {styles.topContainer}>
+                <Text style = {styles.town}>{name}</Text>
+                <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={126} color="white"/> 
+                <Text style = {styles.title}>{weatherOptions[condition].title}</Text>
                 <Text style = {styles.tempText}>{temp}°</Text>
-                <Text style = {styles.subTempText}>{name} {"\n"}Ощущается как: {feels_like}° {"\n"}min: {temp_min}° max: {temp_max}°</Text>
+                <Text style = {styles.subTempText}>Ощущается как: {feels_like}° {"\n"}{temp_min}° - {temp_max}°</Text>
             </View>
-            <View style = {{...styles.halfContainer, ...styles.textContainer}}>
-                <Text style={styles.title}>{weatherOptions[condition].title}</Text>
-                <Text style={styles.subtitle}>Давление: {pressure*0.75} мм.рт.ст., влажность: {humidity}%, {"\n"}cкорость ветра {speed} м/с</Text>
+            <View style = {{...styles.bottomContainer, ...styles.textContainer}}>
+                <Text style={styles.subtitle}>Давление: {pressure*0.75} мм.рт.ст.{"\n"}Влажность: {humidity}%{"\n"}Скорость ветра {speed} м/с</Text>
             </View>
         </LinearGradient>
     );
@@ -94,10 +95,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems:'center',
     },
-    halfContainer:{
+    topContainer:{
+        flex: 2,
+        justifyContent: 'center',
+        alignItems:'center',
+    },
+    bottomContainer:{
         flex: 1,
         justifyContent: 'center',
         alignItems:'center',
+    },
+    town:{
+        fontSize:30,
+        color: "#fff",
+        paddingBottom: 12
     },
     tempText:{
         fontSize:42,
@@ -106,19 +117,20 @@ const styles = StyleSheet.create({
     subTempText:{
         fontSize:28,
         color: "#fff",
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: 15
     },
     title: {
         color: "white",
         fontSize: 36,
         fontWeight: "300",
-        marginBottom: 10
+        marginTop: -15
     },
     subtitle: {
         color: "white",
         fontWeight: "400",
         fontSize: 24,
-        marginTop: 20
+        lineHeight: 36
     },
     textContainer: {
         paddingHorizontal: 20,
