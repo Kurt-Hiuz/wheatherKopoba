@@ -29,6 +29,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "Мое первое приложение на RN + Expo",
+    "githubUrl": "https://github.com/Kurt-Hiuz/wheatherKopoba"
   }
 }
